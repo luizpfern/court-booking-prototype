@@ -1,20 +1,60 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>CourtBook</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="welcome-page">
+    <div class="hero">
+      <p class="tag">Agendamento inteligente de quadras</p>
+      <h1>Bem-vindo ao CourtBook</h1>
+      <p class="subtitle">
+        Reserve futebol, volei, beach tennis e tenis em poucos toques.
+        Veja horarios disponiveis em tempo real e organize seu jogo sem complicacao.
+      </p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <div class="actions">
+        <button class="btn btn-primary" type="button">Agendar agora</button>
+        <button class="btn btn-outline" type="button">Ver disponibilidade</button>
+      </div>
+    </div>
+
+    <section class="sports-grid" aria-label="Modalidades disponiveis">
+      <article class="sport-card">
+        <h2>Futebol</h2>
+        <p>Quadras society para partidas rapidas entre amigos.</p>
+      </article>
+
+      <article class="sport-card">
+        <h2>Volei</h2>
+        <p>Espacos cobertos e abertos para treinos e campeonatos.</p>
+      </article>
+
+      <article class="sport-card">
+        <h2>Beach Tennis</h2>
+        <p>Areia de qualidade e estrutura completa para seu jogo.</p>
+      </article>
+
+      <article class="sport-card">
+        <h2>Tenis</h2>
+        <p>Quadras com excelente manutencao para todos os niveis.</p>
+      </article>
+    </section>
+
+    <section class="highlights" aria-label="Diferenciais do sistema">
+      <div class="highlight-item">
+        <strong>+1200</strong>
+        <span>Reservas mensais</span>
+      </div>
+      <div class="highlight-item">
+        <strong>24h</strong>
+        <span>Acesso online</span>
+      </div>
+      <div class="highlight-item">
+        <strong>100%</strong>
+        <span>Confirmacao instantanea</span>
+      </div>
+    </section>
   </div>
 </ion-content>
