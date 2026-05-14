@@ -1,0 +1,7 @@
+{
+  "name": "court-booking-prototype",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
