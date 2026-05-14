@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <div class="welcome-shell">
+    <main class="welcome-card">
+      <div class="card-layout">
+        <section class="left-column" aria-label="Boas-vindas e seleção de perfil">
+          <div class="brand-mark" aria-hidden="true">🏆</div>
+
+          <p class="subtitle">MARKETPLACE DE QUADRAS ESPORTIVAS</p>
+          <h1 class="app-name">Quadra</h1>
+          <p class="tagline">Encontre sua quadra ideal</p>
+
+          <div class="profile-section">
+            <ion-button class="profile-button client" expand="block" size="large" type="button" (click)="goToLoginUser()">
+              Sou Cliente
+            </ion-button>
+
+            <ion-button class="profile-button company" expand="block" size="large" fill="outline" type="button" (click)="goToLoginCompany()">
+              Sou Estabelecimento
+            </ion-button>
+          </div>
+        </section>
+
+        <section class="right-column" aria-label="Benefícios do aplicativo">
+          <h2>Agende com segurança e garantia</h2>
+
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">🏅</span>
+              <span class="benefit-text">Quadras verificadas e avaliadas</span>
+            </div>
+
+            <div class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">🕐</span>
+              <span class="benefit-text">Horários em tempo real</span>
+            </div>
+
+            <div class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">✅</span>
+              <span class="benefit-text">Cancelamento fácil</span>
+            </div>
+
+            <div class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">📍</span>
+              <span class="benefit-text">Estabelecimentos próximos a você</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</ion-content>
