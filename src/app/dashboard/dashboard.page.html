@@ -1,6 +1,102 @@
 <ion-content [fullscreen]="true">
-  <div class="dashboard-shell">
-    <h1>Dashboard</h1>
-    <p>Área inicial do estabelecimento no protótipo.</p>
+  <div class="dashboard-page">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-avatar">A</div>
+
+        <div class="brand-text">
+          <span>{{ establishment.name }}</span>
+          <small>Área do Estabelecimento</small>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-button" type="button" aria-label="Notificações">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="greeting-block">
+        <h1>Bom dia, Arena Sport!</h1>
+        <p>Sábado, 17 de maio de 2026</p>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card bookings-card">
+          <div class="stat-icon"><ion-icon name="calendar-outline"></ion-icon></div>
+          <strong>{{ stats.todayBookings }}</strong>
+          <span>Reservas hoje</span>
+        </article>
+
+        <article class="stat-card week-card">
+          <div class="stat-icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+          <strong>{{ stats.weekBookings }}</strong>
+          <span>Reservas semana</span>
+        </article>
+
+        <article class="stat-card revenue-card">
+          <div class="stat-icon"><ion-icon name="cash-outline"></ion-icon></div>
+          <strong>R$ {{ stats.monthRevenue }}</strong>
+          <span>Receita mês</span>
+        </article>
+
+        <article class="stat-card courts-card">
+          <div class="stat-icon"><ion-icon name="grid-outline"></ion-icon></div>
+          <strong>{{ stats.activeCourts }}</strong>
+          <span>Quadras ativas</span>
+        </article>
+      </section>
+
+      <section class="schedule-section">
+        <div class="section-header">
+          <h2>Agenda de Hoje</h2>
+          <span class="counter-badge">5</span>
+        </div>
+
+        <article class="schedule-card" *ngFor="let item of todaySchedule">
+          <div class="schedule-left">
+            <strong>{{ item.time }}</strong>
+            <span>{{ item.court }}</span>
+          </div>
+
+          <div class="schedule-center">
+            <strong>{{ item.client }}</strong>
+            <span>{{ item.sport }}</span>
+          </div>
+
+          <div
+            class="status-badge"
+            [class.confirmed]="item.status === 'confirmado'"
+            [class.pending]="item.status === 'pendente'"
+          >
+            {{ item.status === 'confirmado' ? 'Confirmado' : 'Pendente' }}
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item active" type="button" (click)="navigateTo('/dashboard')">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateTo('/my-courts')">
+        <ion-icon name="grid-outline"></ion-icon>
+        <span>Quadras</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateTo('/court-schedule')">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agenda</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateTo('/profile-company')">
+        <ion-icon name="business-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
   </div>
 </ion-content>
