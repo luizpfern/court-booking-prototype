@@ -1,0 +1,11 @@
+ion-content {
+  --background: linear-gradient(155deg, #07131a, #0e2a2c);
+}
+
+.dashboard-shell {
+  min-height: 100%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: #f5fff9;
+}
