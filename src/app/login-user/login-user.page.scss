@@ -1,35 +1,81 @@
-:host {
-  color: #f5fff9;
-}
-
 ion-content {
-  --background: linear-gradient(155deg, #07131a, #0e2a2c);
+  --background:
+    radial-gradient(circle at top, rgba(40, 209, 124, 0.18), transparent 34%),
+    radial-gradient(circle at 85% 15%, rgba(76, 194, 255, 0.12), transparent 26%),
+    linear-gradient(155deg, #07131a, #0e2a2c);
 }
 
 .login-shell {
   min-height: 100%;
   padding: 2rem 1.25rem;
   display: grid;
-  place-content: center;
-  text-align: center;
-  font-family: 'Poppins', 'Montserrat', sans-serif;
+  place-items: center;
+  color: #f5fff9;
 }
 
-.eyebrow {
-  margin: 0;
-  color: #28d17c;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.78rem;
-  font-weight: 700;
+.login-card {
+  width: min(100%, 420px);
+  padding: 1.8rem 1.4rem 1.5rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(14, 26, 33, 0.94), rgba(9, 18, 24, 0.82));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+  text-align: center;
 }
 
 h1 {
   margin: 0.7rem 0 0;
-  font-size: 2.2rem;
+  font-size: clamp(2.2rem, 7vw, 3.1rem);
+  line-height: 1;
+  font-weight: 800;
 }
 
-p {
-  margin: 0.8rem 0 0;
-  color: rgba(245, 255, 249, 0.78);
+.app-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  margin: 0.5rem 0 0;
+  color: rgba(245, 255, 249, 0.66);
+  font-size: 0.96rem;
+}
+
+.form-stack {
+  display: grid;
+  gap: 0.95rem;
+  margin-top: 1.5rem;
+}
+
+.field {
+  --background: rgba(255, 255, 255, 0.06);
+  --border-color: rgba(255, 255, 255, 0.14);
+  --color: #ffffff;
+  --placeholder-color: rgba(255, 255, 255, 0.42);
+  --highlight-color-focused: #00c853;
+  --border-radius: 14px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+.submit-button {
+  --border-radius: 14px;
+  --background: linear-gradient(135deg, #27d67a, #12b862);
+  --color: #07131a;
+  margin-top: 8px;
+  width: 100%;
+  font-weight: 800;
+}
+
+.switch-link {
+  margin: 1rem 0 0;
+  color: #28d17c;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.switch-link:hover {
+  text-decoration: none;
 }

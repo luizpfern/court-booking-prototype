@@ -1,7 +1,47 @@
 <ion-content [fullscreen]="true">
   <div class="login-shell">
-    <p class="eyebrow">Court Connect</p>
-    <h1>Sou Cliente</h1>
-    <p>Área reservada para o fluxo de login do cliente no protótipo.</p>
+    <main class="login-card">
+      <img src="assets/images/logo-bg.png" alt="Quadra logo" class="app-logo">
+
+      <ng-container *ngIf="isLogin">
+        <h1>Entrar</h1>
+        <p class="subtitle">Acesse sua conta</p>
+
+        <div class="form-stack">
+          <ion-input class="field" type="email" label="E-mail" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="password" label="Senha" labelPlacement="stacked" fill="outline"></ion-input>
+        </div>
+
+        <ion-button class="submit-button" expand="block" size="large" type="button" (click)="navigateToHome()">
+          ENTRAR
+        </ion-button>
+
+        <p class="switch-link" (click)="toggleMode()">
+          Não tem conta? Cadastre-se
+        </p>
+      </ng-container>
+
+      <ng-container *ngIf="!isLogin">
+        <h1>Criar conta</h1>
+        <p class="subtitle">Preencha seus dados</p>
+
+        <div class="form-stack">
+          <ion-input class="field" type="text" label="Nome completo" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="email" label="E-mail" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="text" label="CPF" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="tel" label="Telefone" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="text" label="CEP" labelPlacement="stacked" fill="outline"></ion-input>
+          <ion-input class="field" type="password" label="Senha" labelPlacement="stacked" fill="outline"></ion-input>
+        </div>
+
+        <ion-button class="submit-button" expand="block" size="large" type="button" (click)="navigateToHome()">
+          CADASTRAR
+        </ion-button>
+
+        <p class="switch-link" (click)="toggleMode()">
+          Já tem conta? Entrar
+        </p>
+      </ng-container>
+    </main>
   </div>
 </ion-content>
