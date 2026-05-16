@@ -1,0 +1,110 @@
+<ion-content [fullscreen]="true">
+  <div class="my-courts-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Minhas Quadras</h1>
+    </header>
+
+    <main class="content">
+      <section class="summary-card">
+        <div class="summary-item">
+          <strong>4</strong>
+          <span>Total</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-item">
+          <strong>{{ activeCourtsCount }}</strong>
+          <span>Ativas</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-item">
+          <strong>{{ inactiveCourtsCount }}</strong>
+          <span>Inativas</span>
+        </div>
+      </section>
+
+      <article class="court-card" *ngFor="let court of courts">
+        <div class="court-top">
+          <div class="court-main">
+            <h2>{{ court.name }}</h2>
+            <div class="sport-chip">
+              <ion-icon [name]="sportIcons[court.sport] || 'tennisball-outline'"></ion-icon>
+              <span>{{ court.sport }}</span>
+            </div>
+          </div>
+
+          <div class="status-wrap">
+            <button class="status-toggle" type="button" [class.active]="court.active" (click)="toggleCourtStatus(court)">
+              <span class="toggle-dot"></span>
+            </button>
+            <span class="status-label">{{ court.active ? 'Ativa' : 'Inativa' }}</span>
+          </div>
+        </div>
+
+        <div class="court-metrics">
+          <div class="metric-item">
+            <ion-icon name="cash-outline"></ion-icon>
+            <span>R$ {{ court.price }}/h</span>
+          </div>
+
+          <div class="metric-item">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>{{ court.bookingsToday }} hoje</span>
+          </div>
+
+          <div class="metric-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>1h mín</span>
+          </div>
+        </div>
+
+        <div class="court-actions">
+          <ion-button fill="outline" class="action-button" type="button" (click)="navigateToForm(court.id)">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Editar
+          </ion-button>
+
+          <ion-button fill="outline" class="action-button" type="button" (click)="navigateToSchedule()">
+            <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            Agenda
+          </ion-button>
+        </div>
+      </article>
+    </main>
+
+    <div class="floating-action">
+      <ion-button class="fab-button" type="button" (click)="navigateToForm()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item" type="button" (click)="goToDashboard()">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item active" type="button" (click)="goToCourts()">
+        <ion-icon name="grid-outline"></ion-icon>
+        <span>Quadras</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="goToSchedule()">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agenda</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="goToProfile()">
+        <ion-icon name="business-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
+  </div>
+</ion-content>
