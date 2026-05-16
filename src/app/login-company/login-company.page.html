@@ -3,10 +3,9 @@
     <main class="login-card">
       <img src="assets/images/logo-bg.png" alt="Quadra logo" class="app-logo">
 
-      <div class="badge">Área do Estabelecimento</div>
-
       <ng-container *ngIf="isLogin">
         <h1>Entrar</h1>
+        <div class="badge">Área do Estabelecimento</div>
         <p class="subtitle">Acesse o painel do seu estabelecimento</p>
 
         <div class="form-stack">
@@ -25,6 +24,7 @@
 
       <ng-container *ngIf="!isLogin">
         <h1>Criar conta</h1>
+        <div class="badge">Área do Estabelecimento</div>
         <p class="subtitle">Cadastre seu estabelecimento</p>
 
         <div class="form-stack">
