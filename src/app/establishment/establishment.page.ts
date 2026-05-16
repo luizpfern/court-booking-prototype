@@ -39,11 +39,15 @@ export class EstablishmentPage {
         this.router.navigate(['/home']);
         break;
         case 'bookings':
-        this.router.navigate(['/my-bookings'], { state: { courtId: options?.courtId } });
+        this.router.navigate(['/booking'], { queryParams: options });
         break;
         case 'profile':
         this.router.navigate(['/profile-user']);
         break;
+        case 'my-bookings':
+        this.router.navigate(['/my-bookings']);
+        break;
+
     }
   }
 }
