@@ -1,0 +1,122 @@
+<ion-content [fullscreen]="true">
+  <div class="court-schedule-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Agenda das Quadras</h1>
+
+      <span class="topbar-spacer"></span>
+    </header>
+
+    <main class="content">
+      <section class="selector-section">
+        <div class="section-label">Quadra</div>
+
+        <div class="scroll-row courts-scroll" aria-label="Selecionar quadra">
+          <button
+            class="pill"
+            *ngFor="let court of courts"
+            type="button"
+            [class.active]="selectedCourtId === court.id"
+            (click)="selectCourt(court.id)"
+          >
+            {{ court.name }}
+          </button>
+        </div>
+      </section>
+
+      <section class="selector-section">
+        <div class="section-label">Data</div>
+
+        <div class="scroll-row dates-scroll" aria-label="Selecionar data">
+          <button
+            class="date-pill"
+            *ngFor="let date of dates"
+            type="button"
+            [class.active]="selectedDate === date.full"
+            (click)="selectDate(date.full)"
+          >
+            <span class="date-label">{{ date.label }}</span>
+            <span class="date-value">{{ date.value }}</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="summary-card">
+        <div class="summary-item">
+          <strong>{{ occupiedCount }}</strong>
+          <span>Ocupados</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-item">
+          <strong>{{ freeCount }}</strong>
+          <span>Livres</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-item blocked-item">
+          <strong>{{ blockedCount }}</strong>
+          <span>Bloqueados</span>
+        </div>
+      </section>
+
+      <section class="schedule-title">Horários</section>
+
+      <article class="slot-card" *ngFor="let slot of slots" [class.free]="slot.status === 'livre'" [class.occupied]="slot.status === 'ocupado'" [class.blocked]="slot.status === 'bloqueado'">
+        <div class="slot-main" *ngIf="slot.status === 'livre'">
+          <strong>{{ slot.time }}</strong>
+          <span>Disponível</span>
+        </div>
+
+        <div class="slot-main" *ngIf="slot.status === 'ocupado'">
+          <strong>{{ slot.time }}</strong>
+          <span>{{ slot.client }}</span>
+        </div>
+
+        <div class="slot-main" *ngIf="slot.status === 'bloqueado'">
+          <strong>{{ slot.time }}</strong>
+          <span>Bloqueado</span>
+        </div>
+
+        <div class="slot-action" *ngIf="slot.status === 'livre'">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </div>
+
+        <div class="slot-action" *ngIf="slot.status === 'ocupado'">
+          <span class="reserved-badge">Reservado</span>
+        </div>
+
+        <div class="slot-action" *ngIf="slot.status === 'bloqueado'">
+          <ion-icon name="ban-outline"></ion-icon>
+        </div>
+      </article>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item" type="button" (click)="goToDashboard()">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="goToCourts()">
+        <ion-icon name="grid-outline"></ion-icon>
+        <span>Quadras</span>
+      </button>
+
+      <button class="nav-item active" type="button" (click)="goToSchedule()">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agenda</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="goToProfile()">
+        <ion-icon name="business-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
+  </div>
+</ion-content>
