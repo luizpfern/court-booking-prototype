@@ -1,0 +1,101 @@
+<ion-content [fullscreen]="true">
+  <div class="court-form-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Nova Quadra</h1>
+
+      <span class="topbar-spacer"></span>
+    </header>
+
+    <main class="content">
+      <section class="section-label">Informações Básicas</section>
+
+      <section class="card-block">
+        <div class="field-group full">
+          <label>Nome da quadra</label>
+          <ion-input [(ngModel)]="court.name" type="text" placeholder="Digite o nome da quadra"></ion-input>
+        </div>
+
+        <div class="field-group full">
+          <label>Modalidade esportiva</label>
+          <ion-select [(ngModel)]="court.sport" placeholder="Selecione o esporte">
+            <ion-select-option *ngFor="let sport of sports" [value]="sport">{{ sport }}</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div class="row-fields">
+          <div class="field-group">
+            <label>Preço por hora</label>
+            <ion-input [(ngModel)]="court.price" type="number" placeholder="R$ 0,00"></ion-input>
+          </div>
+
+          <div class="field-group">
+            <label>Duração mínima</label>
+            <ion-select [(ngModel)]="court.minDuration">
+              <ion-select-option [value]="1">1h</ion-select-option>
+              <ion-select-option [value]="2">2h</ion-select-option>
+              <ion-select-option [value]="3">3h</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-label">Disponibilidade</section>
+
+      <section class="card-block">
+        <div class="field-group full">
+          <label>Horário de abertura</label>
+          <ion-input [(ngModel)]="court.openTime" type="time"></ion-input>
+        </div>
+
+        <div class="field-group full">
+          <label>Horário de fechamento</label>
+          <ion-input [(ngModel)]="court.closeTime" type="time"></ion-input>
+        </div>
+
+        <div class="status-row">
+          <span>Status da quadra</span>
+
+          <button class="status-toggle" type="button" [class.active]="court.active" (click)="court.active = !court.active">
+            <span class="toggle-dot"></span>
+            <strong>{{ court.active ? 'Quadra ativa' : 'Quadra inativa' }}</strong>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-label">Comodidades</section>
+
+      <section class="card-block">
+        <div class="amenities-wrap">
+          <button
+            class="amenity-chip"
+            type="button"
+            *ngFor="let item of amenitiesOptions"
+            [class.selected]="isSelected(item)"
+            (click)="toggleAmenity(item)"
+          >
+            {{ item }}
+          </button>
+        </div>
+      </section>
+
+      <section class="section-label">Descrição</section>
+
+      <section class="card-block">
+        <textarea
+          [(ngModel)]="court.description"
+          placeholder="Descreva a quadra, diferenciais, regras..."
+        ></textarea>
+      </section>
+
+      <div class="action-row">
+        <ion-button expand="block" class="save-button" type="button" (click)="saveForm()">
+          SALVAR QUADRA
+        </ion-button>
+      </div>
+    </main>
+  </div>
+</ion-content>
