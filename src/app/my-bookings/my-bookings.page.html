@@ -1,5 +1,113 @@
 <ion-content [fullscreen]="true">
-  <div class="simple-shell">
-    <h1>Agendamentos</h1>
+  <div class="my-bookings-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Meus Agendamentos</h1>
+
+      <span class="topbar-spacer"></span>
+    </header>
+
+    <main class="content">
+      <section class="tabs-bar" aria-label="Alternar agendamentos">
+        <button
+          class="tab-button"
+          type="button"
+          [class.active]="selectedTab === 'ativas'"
+          (click)="selectTab('ativas')"
+        >
+          Ativas
+        </button>
+
+        <button
+          class="tab-button"
+          type="button"
+          [class.active]="selectedTab === 'historico'"
+          (click)="selectTab('historico')"
+        >
+          Histórico
+        </button>
+      </section>
+
+      <ng-container *ngIf="filteredBookings.length > 0; else emptyState">
+        <article
+          class="booking-card"
+          *ngFor="let booking of filteredBookings"
+          [class.confirmed]="booking.status === 'confirmado'"
+          [class.completed]="booking.status === 'concluido'"
+          [class.canceled]="booking.status === 'cancelado'"
+        >
+          <div class="booking-header">
+            <h2>{{ booking.court }}</h2>
+
+            <span class="status-badge confirmed-badge" *ngIf="booking.status === 'confirmado'">Confirmado</span>
+            <span class="status-badge completed-badge" *ngIf="booking.status === 'concluido'">Concluído</span>
+            <span class="status-badge canceled-badge" *ngIf="booking.status === 'cancelado'">Cancelado</span>
+          </div>
+
+          <div class="establishment-row">
+            <ion-icon name="location-outline"></ion-icon>
+            <span>{{ booking.establishment }}</span>
+          </div>
+
+          <div class="info-row">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>{{ booking.date }}</span>
+          </div>
+
+          <div class="info-row">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ booking.time }}</span>
+          </div>
+
+          <div class="info-row">
+            <ion-icon name="basketball-outline"></ion-icon>
+            <span>{{ booking.sport }}</span>
+          </div>
+
+          <div class="booking-footer">
+            <strong class="price" [class.historical-price]="booking.status !== 'confirmado'">
+              R$ {{ booking.price }},00
+            </strong>
+
+            <ion-button
+              *ngIf="booking.status === 'confirmado'"
+              fill="outline"
+              class="cancel-button"
+              type="button"
+              (click)="cancelBooking(booking.id)"
+            >
+              CANCELAR
+            </ion-button>
+          </div>
+        </article>
+      </ng-container>
+
+      <ng-template #emptyState>
+        <section class="empty-state">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <p>Nenhum agendamento encontrado</p>
+        </section>
+      </ng-template>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item" type="button" (click)="goToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item active" type="button" (click)="goToBookings()">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agendamentos</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="goToProfile()">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
   </div>
 </ion-content>
