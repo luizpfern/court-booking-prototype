@@ -35,3 +35,101 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 /* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+.profile-company-page {
+	min-height: 100%;
+	color: #f5fff9;
+	padding-top: 72px;
+	padding-bottom: 80px;
+
+	ion-content {
+		--background: linear-gradient(155deg, #07131a 0%, #091d22 45%, #0e2a2c 100%);
+	}
+
+	.topbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 20;
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 16px;
+		background: rgba(6, 17, 20, 0.78);
+		backdrop-filter: blur(14px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.topbar h1 {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 800;
+		text-align: center;
+		flex: 1;
+	}
+
+	.back-button,
+	.edit-button {
+		width: 40px;
+		height: 40px;
+		border: 0;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.06);
+		color: #f5fff9;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.edit-button {
+		color: #00c853;
+	}
+
+	.back-button ion-icon,
+	.edit-button ion-icon {
+		font-size: 1.1rem;
+	}
+
+	.bottom-nav {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 20;
+		display: flex;
+		justify-content: space-around;
+		padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+		background: rgba(6, 17, 20, 0.84);
+		backdrop-filter: blur(14px);
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.nav-item {
+		flex: 1;
+		border: 0;
+		background: transparent;
+		color: rgba(255, 255, 255, 0.55);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		font-size: 0.75rem;
+		font-weight: 700;
+	}
+
+	.nav-item ion-icon {
+		font-size: 1.15rem;
+	}
+
+	.nav-item.active {
+		color: #00c853;
+	}
+
+	.back-button:active,
+	.edit-button:active,
+	.nav-item:active {
+		transform: scale(0.98);
+	}
+}
