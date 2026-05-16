@@ -1,0 +1,199 @@
+<ion-content [fullscreen]="true">
+  <div class="profile-company-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Perfil do Estabelecimento</h1>
+
+      <button class="edit-button" type="button" (click)="toggleEdit()" aria-label="Editar perfil">
+        <ion-icon name="create-outline"></ion-icon>
+      </button>
+    </header>
+
+    <main class="content">
+      <section class="avatar-section">
+        <div class="avatar-circle">A</div>
+        <div class="badge">Área do Estabelecimento</div>
+        <h2>{{ establishment.name }}</h2>
+
+        <div class="city-row">
+          <ion-icon name="location-outline"></ion-icon>
+          <span>{{ establishment.city }}</span>
+        </div>
+
+        <p>Membro desde {{ establishment.memberSince }}</p>
+      </section>
+
+      <section class="stats-card">
+        <div class="stat-item">
+          <strong>{{ establishment.totalCourts }}</strong>
+          <span>Quadras</span>
+        </div>
+
+        <div class="stat-separator"></div>
+
+        <div class="stat-item">
+          <strong>{{ establishment.totalBookings }}</strong>
+          <span>Reservas</span>
+        </div>
+
+        <div class="stat-separator"></div>
+
+        <div class="stat-item">
+          <strong>{{ establishment.rating }} ★</strong>
+          <span>Avaliação</span>
+        </div>
+      </section>
+
+      <section class="section-title">
+        <h3>Dados do Estabelecimento</h3>
+      </section>
+
+      <section class="details-card">
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="business-outline"></ion-icon>
+            <span>Nome fantasia</span>
+          </div>
+
+          <div class="field-value" *ngIf="!isEditing; else editFantasyName">
+            {{ establishment.fantasyName }}
+          </div>
+
+          <ng-template #editFantasyName>
+            <ion-input [(ngModel)]="establishment.fantasyName" type="text"></ion-input>
+          </ng-template>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="card-outline"></ion-icon>
+            <span>CNPJ</span>
+          </div>
+
+          <div class="field-value cnpj-value">
+            {{ establishment.cnpj }}
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="mail-outline"></ion-icon>
+            <span>E-mail</span>
+          </div>
+
+          <div class="field-value" *ngIf="!isEditing; else editEmail">
+            {{ establishment.email }}
+          </div>
+
+          <ng-template #editEmail>
+            <ion-input [(ngModel)]="establishment.email" type="email"></ion-input>
+          </ng-template>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="call-outline"></ion-icon>
+            <span>Telefone</span>
+          </div>
+
+          <div class="field-value" *ngIf="!isEditing; else editPhone">
+            {{ establishment.phone }}
+          </div>
+
+          <ng-template #editPhone>
+            <ion-input [(ngModel)]="establishment.phone" type="tel"></ion-input>
+          </ng-template>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="map-outline"></ion-icon>
+            <span>Endereço</span>
+          </div>
+
+          <div class="field-value" *ngIf="!isEditing; else editAddress">
+            {{ establishment.address }}
+          </div>
+
+          <ng-template #editAddress>
+            <ion-input [(ngModel)]="establishment.address" type="text"></ion-input>
+          </ng-template>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>Horário de funcionamento</span>
+          </div>
+
+          <div class="field-value" *ngIf="!isEditing; else editHours">
+            {{ establishment.openHours }}
+          </div>
+
+          <ng-template #editHours>
+            <ion-input [(ngModel)]="establishment.openHours" type="text"></ion-input>
+          </ng-template>
+        </div>
+
+        <ion-button *ngIf="isEditing" expand="block" class="save-button" type="button" (click)="saveProfile()">
+          SALVAR ALTERAÇÕES
+        </ion-button>
+      </section>
+
+      <section class="section-title">
+        <h3>Esportes Oferecidos</h3>
+      </section>
+
+      <section class="sports-card">
+        <span class="sport-chip" *ngFor="let sport of sports">{{ sport }}</span>
+      </section>
+
+      <section class="section-title">
+        <h3>Ações</h3>
+      </section>
+
+      <section class="actions-card">
+        <button class="action-item" type="button" *ngFor="let action of actions">
+          <span class="action-left">
+            <ion-icon [name]="action.icon"></ion-icon>
+            <span>{{ action.label }}</span>
+          </span>
+
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </section>
+
+      <div class="logout-wrapper">
+        <ion-button fill="outline" class="logout-button" expand="block" type="button" (click)="logout()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          SAIR DA CONTA
+        </ion-button>
+      </div>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item" type="button" (click)="navigateTo('/dashboard')">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateTo('/my-courts')">
+        <ion-icon name="grid-outline"></ion-icon>
+        <span>Quadras</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateTo('/court-schedule')">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agenda</span>
+      </button>
+
+      <button class="nav-item active" type="button" (click)="navigateTo('/profile-company')">
+        <ion-icon name="business-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
+  </div>
+</ion-content>
