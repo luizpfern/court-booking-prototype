@@ -1,60 +1,114 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>CourtBook</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <div class="welcome-page">
-    <div class="hero">
-      <p class="tag">Agendamento inteligente de quadras</p>
-      <h1>Bem-vindo ao CourtBook</h1>
-      <p class="subtitle">
-        Reserve futebol, volei, beach tennis e tenis em poucos toques.
-        Veja horarios disponiveis em tempo real e organize seu jogo sem complicacao.
-      </p>
-
-      <div class="actions">
-        <button class="btn btn-primary" type="button">Agendar agora</button>
-        <button class="btn btn-outline" type="button">Ver disponibilidade</button>
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-page">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/images/logo-bg.png" alt="Quadra logo" class="brand-logo">
+        <span>Quadra</span>
       </div>
-    </div>
 
-    <section class="sports-grid" aria-label="Modalidades disponiveis">
-      <article class="sport-card">
-        <h2>Futebol</h2>
-        <p>Quadras society para partidas rapidas entre amigos.</p>
-      </article>
+      <button class="icon-button" type="button" aria-label="Notificações">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </button>
+    </header>
 
-      <article class="sport-card">
-        <h2>Volei</h2>
-        <p>Espacos cobertos e abertos para treinos e campeonatos.</p>
-      </article>
+    <main class="content">
+      <section class="greeting">
+        <h1>Olá, João!</h1>
+        <p>Ribeirão Preto, SP <span aria-hidden="true">📍</span></p>
+      </section>
 
-      <article class="sport-card">
-        <h2>Beach Tennis</h2>
-        <p>Areia de qualidade e estrutura completa para seu jogo.</p>
-      </article>
-
-      <article class="sport-card">
-        <h2>Tenis</h2>
-        <p>Quadras com excelente manutencao para todos os niveis.</p>
-      </article>
-    </section>
-
-    <section class="highlights" aria-label="Diferenciais do sistema">
-      <div class="highlight-item">
-        <strong>+1200</strong>
-        <span>Reservas mensais</span>
+      <div class="search-box" role="search">
+        <ion-icon name="search-outline"></ion-icon>
+        <input type="text" placeholder="Buscar estabelecimentos..." aria-label="Buscar estabelecimentos">
       </div>
-      <div class="highlight-item">
-        <strong>24h</strong>
-        <span>Acesso online</span>
+
+      <div class="sports-filters" aria-label="Filtrar por esporte">
+        <div
+          class="sport-chip"
+          *ngFor="let sport of sports"
+          [class.active]="selectedSport === sport"
+          (click)="filterBySport(sport)"
+        >
+          {{ sport }}
+        </div>
       </div>
-      <div class="highlight-item">
-        <strong>100%</strong>
-        <span>Confirmacao instantanea</span>
-      </div>
-    </section>
+
+      <section class="section-block">
+        <h2>Próximos a você</h2>
+        <div class="horizontal-scroll no-scrollbar">
+          <article
+            class="establishment-card horizontal"
+            *ngFor="let establishment of filteredEstablishments"
+            (click)="navigateToEstablishment(establishment.id)"
+          >
+            <img [src]="establishment.image" [alt]="establishment.name">
+            <div class="card-body">
+              <h3>{{ establishment.name }}</h3>
+              <p class="sports">{{ establishment.sports.join(' • ') }}</p>
+
+              <div class="meta-row">
+                <span class="meta-item">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{ establishment.distance }}
+                </span>
+                <span class="meta-item rating">
+                  <ion-icon name="star"></ion-icon>
+                  {{ establishment.rating }}
+                </span>
+              </div>
+
+              <p class="price">A partir de R$ {{ establishment.price }}/h</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2>Mais bem avaliados</h2>
+        <div class="vertical-list">
+          <article
+            class="establishment-card vertical"
+            *ngFor="let establishment of topRatedEstablishments"
+            (click)="navigateToEstablishment(establishment.id)"
+          >
+            <img [src]="establishment.image" [alt]="establishment.name">
+            <div class="card-body">
+              <h3>{{ establishment.name }}</h3>
+              <p class="sports">{{ establishment.sports.join(' • ') }}</p>
+
+              <div class="meta-row">
+                <span class="meta-item">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{ establishment.distance }}
+                </span>
+                <span class="meta-item rating">
+                  <ion-icon name="star"></ion-icon>
+                  {{ establishment.rating }}
+                </span>
+              </div>
+
+              <p class="price">A partir de R$ {{ establishment.price }}/h</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item active" type="button">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateToBookings()">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agendamentos</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigateToProfile()">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
   </div>
 </ion-content>
