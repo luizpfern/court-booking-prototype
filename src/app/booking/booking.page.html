@@ -1,0 +1,104 @@
+<ion-content [fullscreen]="true">
+  <div class="booking-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Reservar Quadra</h1>
+
+      <span class="topbar-spacer"></span>
+    </header>
+
+    <main class="content">
+      <section class="summary-card">
+        <div class="summary-main">
+          <div>
+            <h2>{{ court.name }}</h2>
+
+            <div class="establishment-row">
+              <ion-icon name="location-outline"></ion-icon>
+              <span>{{ court.establishment }}</span>
+            </div>
+
+            <div class="sport-chip">{{ court.sport }}</div>
+          </div>
+
+          <div class="price-block">
+            <strong>R$ {{ court.price }}/h</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h3>Selecione a data</h3>
+
+        <div class="dates-scroll" aria-label="Selecione a data">
+          <button
+            class="date-pill"
+            *ngFor="let date of dates"
+            type="button"
+            [class.active]="selectedDate === date.full"
+            (click)="selectDate(date.full)"
+          >
+            <span class="date-label">{{ date.label }}</span>
+            <span class="date-value">{{ date.value }}</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h3>Selecione o horário</h3>
+
+        <div class="times-grid">
+          <button
+            class="time-pill"
+            *ngFor="let time of availableTimes"
+            type="button"
+            [class.selected]="selectedTime === time"
+            [class.unavailable]="isUnavailable(time)"
+            [disabled]="isUnavailable(time)"
+            (click)="selectTime(time)"
+          >
+            {{ time }}
+          </button>
+        </div>
+      </section>
+
+      <section class="resume-card">
+        <h3>Resumo da reserva</h3>
+
+        <div class="resume-row">
+          <span>Quadra</span>
+          <strong>{{ court.name }}</strong>
+        </div>
+
+        <div class="resume-row">
+          <span>Data</span>
+          <strong>{{ selectedDate || 'Não selecionada' }}</strong>
+        </div>
+
+        <div class="resume-row">
+          <span>Horário</span>
+          <strong>{{ selectedTime || 'Não selecionado' }}</strong>
+        </div>
+
+        <div class="resume-row">
+          <span>Duração</span>
+          <strong>1 hora</strong>
+        </div>
+
+        <div class="resume-row total-row">
+          <span>Total</span>
+          <strong>R$ 60,00</strong>
+        </div>
+      </section>
+    </main>
+
+    <div class="action-bar">
+      <ion-button expand="block" class="confirm-button" type="button" (click)="confirmBooking()">
+        CONFIRMAR RESERVA
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
