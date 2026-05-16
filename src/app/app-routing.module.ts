@@ -23,6 +23,10 @@ const routes: Routes = [
     loadComponent: () => import('./dashboard/dashboard.page').then(m => m.DashboardPage)
   },
   {
+    path: 'booking',
+    loadComponent: () => import('./booking/booking.page').then(m => m.BookingPage)
+  },
+  {
     path: 'establishment/:id',
     loadComponent: () => import('./establishment/establishment.page').then(m => m.EstablishmentPage)
   },
