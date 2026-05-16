@@ -14,7 +14,7 @@ ion-content {
 }
 
 .home-page {
-  min-height:100%;
+  min-height: 100%;
   padding: 70px 16px 16px;
   color: var(--text);
 }
@@ -67,7 +67,7 @@ ion-content {
 .greeting h1 {
   margin: 0;
   padding-top: 24px;
-  font-size:1.4rem;
+  font-size: 1.4rem;
   font-weight: 800;
 }
 
@@ -120,7 +120,8 @@ ion-content {
   display: none;
 }
 
-.sports-filters,.horizontal-scroll {
+.sports-filters,
+.horizontal-scroll {
   scrollbar-width: none;
 }
 
@@ -148,7 +149,7 @@ ion-content {
 
 .section-block h2 {
   margin: 0 0 12px;
-  font-size:1rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
@@ -164,11 +165,12 @@ ion-content {
 }
 
 .establishment-card {
+  position: relative;
   background: var(--card);
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: opacity 180ms ease;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .establishment-card:hover {
@@ -178,10 +180,9 @@ ion-content {
 .establishment-card.horizontal {
   width: 220px;
   flex-shrink: 0;
-  position: relative;
 }
 
-.establishment-card.horizontal::after {
+.establishment-card.horizontal::before {
   content: '';
   position: absolute;
   top: 0;
@@ -191,6 +192,7 @@ ion-content {
   background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
   border-radius: inherit;
   pointer-events: none;
+  z-index: 1;
 }
 
 .establishment-card.vertical {
@@ -212,17 +214,12 @@ ion-content {
 .establishment-card.vertical img {
   width: 110px;
   height: 90px;
-  flex-shrink: 0;
   border-radius: 10px;
+  flex-shrink: 0;
 }
 
 .card-body {
   padding: 12px;
-}
-
-.establishment-card.horizontal .card-body {
-  position: relative;
-  z-index: 1;
 }
 
 .establishment-card.vertical .card-body {
@@ -301,6 +298,7 @@ ion-content {
 
 .nav-item.active {
   color: var(--primary);
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
