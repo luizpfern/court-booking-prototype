@@ -39,6 +39,22 @@ const routes: Routes = [
     loadComponent: () => import('./profile-user/profile-user.page').then(m => m.ProfileUserPage)
   },
   {
+    path: 'my-courts',
+    loadComponent: () => import('./my-courts/my-courts.page').then(m => m.MyCourtsPage)
+  },
+  {
+    path: 'court-schedule',
+    loadComponent: () => import('./court-schedule/court-schedule.page').then(m => m.CourtSchedulePage)
+  },
+  {
+    path: 'profile-company',
+    loadComponent: () => import('./profile-company/profile-company.page').then(m => m.ProfileCompanyPage)
+  },
+  {
+    path: 'court-form',
+    loadComponent: () => import('./court-form/court-form.page').then(m => m.CourtFormPage)
+  },
+  {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full'
