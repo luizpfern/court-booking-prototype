@@ -19,6 +19,22 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.page').then(m => m.DashboardPage)
+  },
+  {
+    path: 'establishment/:id',
+    loadComponent: () => import('./establishment/establishment.page').then(m => m.EstablishmentPage)
+  },
+  {
+    path: 'my-bookings',
+    loadComponent: () => import('./my-bookings/my-bookings.page').then(m => m.MyBookingsPage)
+  },
+  {
+    path: 'profile-user',
+    loadComponent: () => import('./profile-user/profile-user.page').then(m => m.ProfileUserPage)
+  },
+  {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full'
