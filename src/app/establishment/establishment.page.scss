@@ -1,10 +1,244 @@
 ion-content {
-  --background: linear-gradient(155deg, #07131a, #0e2a2c);
+  --background: radial-gradient(circle at 15% 20%, rgba(0, 200, 83, 0.18) 0%, transparent 45%), radial-gradient(circle at 88% 15%, rgba(76, 194, 255, 0.12) 0%, transparent 40%), linear-gradient(155deg, #07131a, #0e2a2c);
+  --padding-bottom: 80px;
 }
 
-.simple-shell {
+.establishment-page {
   min-height: 100%;
-  display: grid;
-  place-content: center;
+  padding-top: 64px;
   color: #f5fff9;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(10, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.topbar-spacer {
+  width: 32px;
+}
+
+.back-button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5fff9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.cover-card {
+  margin-bottom: 16px;
+}
+
+.cover-image-wrapper {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.cover-info {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+}
+
+.cover-info h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-stars ion-icon {
+  color: #f3c623;
+}
+
+.info-card,
+.court-card {
+  background: #1a1a2e;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.info-card {
+  margin: 0 16px 16px;
+  padding: 16px;
+}
+
+.info-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+  color: #fff;
+}
+
+.info-row ion-icon {
+  color: #00c853;
+  font-size: 18px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.sports-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.sport-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid #00c853;
+  color: #00c853;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.section-block {
+  padding: 0 16px 16px;
+}
+
+.section-block h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.court-list {
+  display: grid;
+  gap: 12px;
+}
+
+.court-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+}
+
+.court-info h4 {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.court-info p {
+  margin: 6px 0 8px;
+  color: #00c853;
+  font-size: 0.78rem;
+}
+
+.court-info strong {
+  color: #00c853;
+  font-size: 0.9rem;
+}
+
+.reserve-button {
+  --border-radius: 8px;
+  --background: linear-gradient(135deg, #27d67a, #12b862);
+  --color: #07131a;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 36px;
+  font-weight: 800;
+}
+
+.unavailable-button {
+  --border-radius: 8px;
+  --background: rgba(255, 255, 255, 0.1);
+  --color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+  min-height: 36px;
+  font-weight: 800;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 8px 12px;
+  background: rgba(7, 19, 26, 0.94);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-item {
+  display: grid;
+  gap: 4px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.65rem;
+}
+
+.nav-item ion-icon {
+  font-size: 22px;
+}
+
+.nav-item.active {
+  color: #00c853;
+  font-weight: 700;
 }

@@ -1,5 +1,104 @@
 <ion-content [fullscreen]="true">
-  <div class="simple-shell">
-    <h1>Estabelecimento</h1>
+  <div class="establishment-page">
+    <header class="topbar">
+      <button class="back-button" type="button" (click)="navigate('home')" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <h1>Estabelecimento</h1>
+
+      <span class="topbar-spacer"></span>
+    </header>
+
+    <main class="content">
+      <section class="cover-card">
+        <div class="cover-image-wrapper">
+          <img [src]="establishment.image" [alt]="establishment.name" class="cover-image">
+          <div class="cover-overlay"></div>
+          <div class="cover-info">
+            <h2>{{ establishment.name }}</h2>
+            <div class="rating-row">
+              <span class="rating-stars">
+                <ion-icon name="star"></ion-icon>
+                {{ establishment.rating }}
+              </span>
+              <span>{{ establishment.totalReviews }} avaliações</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-card">
+        <div class="info-row">
+          <ion-icon name="location-outline"></ion-icon>
+          <span>{{ establishment.address }}</span>
+        </div>
+
+        <div class="info-row">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>{{ establishment.openHours }}</span>
+        </div>
+
+        <div class="info-row">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>{{ establishment.phone }}</span>
+        </div>
+
+        <div class="info-row">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ establishment.description }}</span>
+        </div>
+
+        <div class="sports-tags">
+          <div class="sport-chip" *ngFor="let sport of establishment.sports">{{ sport }}</div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h3>Quadras disponíveis</h3>
+
+        <div class="court-list">
+          <article class="court-card" *ngFor="let court of courts">
+            <div class="court-info">
+              <h4>{{ court.name }}</h4>
+              <p>{{ court.sport }}</p>
+              <strong>R$ {{ court.price }}/h</strong>
+            </div>
+
+            <ion-button
+              *ngIf="court.available; else unavailableButton"
+              class="reserve-button"
+              type="button"
+              (click)="navigate('bookings', { courtId: court.id })"
+            >
+              RESERVAR
+            </ion-button>
+
+            <ng-template #unavailableButton>
+              <ion-button class="unavailable-button" type="button" disabled>
+                INDISPONÍVEL
+              </ion-button>
+            </ng-template>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item" type="button" (click)="navigate('home')">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Início</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigate('bookings')">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Agendamentos</span>
+      </button>
+
+      <button class="nav-item" type="button" (click)="navigate('profile')">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </nav>
   </div>
 </ion-content>
